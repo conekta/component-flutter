@@ -1,0 +1,23 @@
+{
+  "@@locale": "en",
+  "cardNameLabel": "Cardholder name",
+  "cardNameHint": "Name as it appears on the card",
+  "cardNumberLabel": "Card number",
+  "cardNumberHint": "0000 0000 0000 0000",
+  "expiryDateLabel": "Expiry",
+  "expiryDateHint": "MM/YY",
+  "cvvLabel": "CVV",
+  "cvvHint": "CVV",
+  "submitButton": "Continue",
+  "invalidCVV": "Invalid CVV",
+  "numbersOnly": "Numbers only",
+  "errornameCardNoValid": "Invalid card name",
+  "paySafeWithConekta" : "Pay Secure with",
+  "errorNumberNoValid" : "Number no valid",
+  "expiryDateRequired": "Date required",
+  "expiryDateFormatInvalid": "Invalid format (MM/YY)",
+  "expiryDateMonthInvalid": "Invalid month",
+  "expiryDateYearInvalid": "Invalid year",
+  "expiryDateYearExpired": "Year expired",
+  "expiryDateExpired": "Date expired"
+}
