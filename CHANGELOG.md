@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.0.1-beta.3] - 2025-05-30
+
+### Fix
+- exported missing classes
+
 ## [0.0.1-beta.2] - 2025-05-30
 
 ### Added
