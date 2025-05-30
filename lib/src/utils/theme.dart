@@ -25,6 +25,7 @@ final ThemeData cardInputTheme = ThemeData(
   ),
   inputDecorationTheme: InputDecorationTheme(
     hintStyle: GoogleFonts.inter(color: AppColors.disabled, fontSize: 14),
+    contentPadding: const EdgeInsets.only(left: 14, right: 14, top: 0, bottom: 0),
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(color: AppColors.disabled),
       borderRadius: BorderRadius.circular(6),

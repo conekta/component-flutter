@@ -236,7 +236,7 @@ class _CardFormState extends State<CardForm> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 32),
+                        const SizedBox(height: 24),
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
@@ -244,7 +244,7 @@ class _CardFormState extends State<CardForm> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
                                   Theme.of(themedContext).primaryColor,
-                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              padding: const EdgeInsets.symmetric(vertical: 0),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(6),
                               ),
@@ -262,7 +262,7 @@ class _CardFormState extends State<CardForm> {
                                     AppLocalizations.of(localizedContext)!
                                         .submitButton,
                                     style: TextStyle(
-                                        fontSize: 18,
+                                        fontSize: 16,
                                         color: Theme.of(themedContext)
                                             .colorScheme
                                             .onPrimary)),

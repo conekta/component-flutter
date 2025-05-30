@@ -19,12 +19,6 @@ class SecurePaymentSection extends StatelessWidget {
                 AppLocalizations.of(context)!.paySafeWithConekta.toUpperCase(),
                 style: theme.textTheme.labelSmall,
               ),
-              const Spacer(), // Pushes the icon to the right
-              Icon(
-                Icons.info_outline,
-                size: 16.0,
-                color: theme.primaryColor, // Adjust color as needed
-              ),
               const SizedBox(width: 4.0), // Adjust spacing as needed
             ],
           ),
