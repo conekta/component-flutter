@@ -24,7 +24,11 @@ class CardCVVField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      decoration: decoration ?? const InputDecoration(labelText: 'CVV'),
+      decoration: decoration ??
+          InputDecoration(
+            labelText: 'CVV',
+            isDense: true,
+          ).applyDefaults(Theme.of(context).inputDecorationTheme),
       keyboardType: TextInputType.number,
       inputFormatters: [
         FilteringTextInputFormatter.digitsOnly,

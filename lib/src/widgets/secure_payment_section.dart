@@ -16,14 +16,8 @@ class SecurePaymentSection extends StatelessWidget {
           Row(
             children: [
               Text(
-                AppLocalizations.of(context)!.paySafeWithConekta,
+                AppLocalizations.of(context)!.paySafeWithConekta.toUpperCase(),
                 style: theme.textTheme.labelSmall,
-              ),
-              const Spacer(), // Pushes the icon to the right
-              Icon(
-                Icons.info_outline,
-                size: 16.0,
-                color: theme.primaryColor, // Adjust color as needed
               ),
               const SizedBox(width: 4.0), // Adjust spacing as needed
             ],
@@ -33,8 +27,12 @@ class SecurePaymentSection extends StatelessWidget {
             'https://assets.conekta.com/cpanel/statics/assets/img/conekta-logo-blue-full.svg',
             height: 20.0, // Adjust size as needed
           ),
-          const SizedBox(height: 16.0), // Adjust spacing as needed
-          const Divider(), // Add a divider as seen in the image
+          Padding(
+            padding: const EdgeInsets.only(bottom: 15, top: 15),
+            child: Divider(
+              color: theme.colorScheme.shadow,
+            ),
+          ),
         ],
       ),
     );
