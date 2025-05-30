@@ -14,18 +14,27 @@ class CardForm extends StatefulWidget {
   final void Function(Map<String, dynamic> result)? onSubmitted;
   final PaymentService paymentService;
   final Locale locale;
-  const CardForm({
-    super.key,
-    this.onSubmitted,
-    required this.paymentService,
-    this.locale = const Locale('es'),
-  });
+  final ThemeData? themeData;
+  const CardForm(
+      {super.key,
+      this.onSubmitted,
+      required this.paymentService,
+      this.locale = const Locale('es'),
+      this.themeData});
 
   @override
   State<CardForm> createState() => _CardFormState();
 }
 
 class _CardFormState extends State<CardForm> {
+  late ThemeData _effectiveTheme;
+
+  @override
+  void initState() {
+    super.initState();
+    _effectiveTheme = widget.themeData ?? cardInputTheme;
+  }
+
   final _formKey = GlobalKey<FormState>();
   final expiryDateController = TextEditingController();
 
@@ -89,7 +98,7 @@ class _CardFormState extends State<CardForm> {
         locale: widget.locale,
         child: Builder(builder: (localizedContext) {
           return Theme(
-            data: cardInputTheme,
+            data: _effectiveTheme,
             child: Builder(builder: (themedContext) {
               return Form(
                 key: _formKey,
@@ -257,23 +266,30 @@ class _CardFormState extends State<CardForm> {
                           child: ElevatedButton(
                             onPressed: _isLoading ? null : _submit,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: cardInputTheme.primaryColor,
+                              backgroundColor:
+                                  Theme.of(themedContext).primaryColor,
                               padding: const EdgeInsets.symmetric(vertical: 16),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(6),
                               ),
                             ),
                             child: _isLoading
-                                ? const SizedBox(
+                                ? SizedBox(
                                     height: 24,
                                     width: 24,
                                     child: CircularProgressIndicator(
-                                        strokeWidth: 3, color: Colors.white))
+                                        strokeWidth: 3,
+                                        color: Theme.of(themedContext)
+                                            .colorScheme
+                                            .onPrimary))
                                 : Text(
                                     AppLocalizations.of(localizedContext)!
                                         .submitButton,
-                                    style: const TextStyle(
-                                        fontSize: 18, color: Colors.white)),
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color: Theme.of(themedContext)
+                                            .colorScheme
+                                            .onPrimary)),
                           ),
                         ),
                       ],

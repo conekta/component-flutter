@@ -3,6 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 final ThemeData cardInputTheme = ThemeData(
   primaryColor: const Color(0xFF081133),
+  colorScheme:const ColorScheme.light(
+    primary: Color(0xFF081133),
+    onPrimary: Colors.white, //
+    surface: Colors.white,
+  ),
   textTheme: TextTheme(
     bodyMedium: GoogleFonts.inter(),
     labelSmall: GoogleFonts.inter(

@@ -1,6 +1,6 @@
 name: conekta_component
 description: A Flutter library for securely collecting and validating card payment information using Conekta.
-version: 0.0.1-beta.1
+version: 0.0.1-beta.2
 homepage: https://www.github.com/conekta/component-flutter
 repository: https://www.github.com/conekta/component-flutter
 environment:
