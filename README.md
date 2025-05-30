@@ -24,6 +24,5 @@ A customizable Flutter widget for securely collecting credit card information. T
     Open your `pubspec.yaml` file and add the following line under `dependencies`:
     ```yml
     dependencies:
-        conekta_component: latest
+        conekta_component: any
     ```
-    
