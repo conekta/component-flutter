@@ -30,7 +30,7 @@ class PaymentService {
         'Accept': 'application/vnd.conekta-v2.2.0+json',
         'X-Tokenization-Source': 'flutter',
         'publisher': 'conekta',
-        'origin': 'fluter sdk',
+        'origin': 'flutter sdk',
         'conekta-client-user-agent': jsonEncode({
           'agent': 'Conekta ActiveMerchantBindings',
           'lang': 'flutter',
@@ -51,23 +51,11 @@ class PaymentService {
 
     if (response.statusCode < 300) {
       return jsonDecode(response.body);
-    } else {
-      String message = 'unknow error';
-      try {
-        final body = jsonDecode(response.body);
-        if (body is Map<String, dynamic> && body.containsKey('error')) {
-          message = body['error'].toString();
-        } else {
-          message = response.body;
-        }
-      } catch (_) {
-        message = response.body;
-      }
-      throw HttpException(
-        statusCode: response.statusCode,
-        message: message,
-      );
     }
+    throw HttpException(
+      statusCode: response.statusCode,
+      message: response.body,
+    );
   }
 }
 

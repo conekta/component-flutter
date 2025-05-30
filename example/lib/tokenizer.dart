@@ -1,5 +1,6 @@
 import 'package:conekta_component/card_input_flutter.dart';
 import 'package:conekta_component/l10n/app_localizations.dart';
+import 'package:conekta_component/src/services/result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -27,13 +28,12 @@ class MyApp extends StatelessWidget {
 class CreditCardFormScreen extends StatelessWidget {
   const CreditCardFormScreen({super.key});
 
-  void _onSubmitted(Map<String, dynamic> result) {
-    if (result.containsKey("error")) {
-      print('Error recibido: $result["error"]');
-      return;
+  void _onSubmitted(Result<Map<String, dynamic>> result) {
+    if (result is Success<Map<String, dynamic>>) {
+      print("ok: ${result.value}");
+    } else if (result is Failure<Map<String, dynamic>>) {
+      print("Error: ${result.exception}");
     }
-
-    print('Token recibido: $result["data"]');
   }
 
   @override

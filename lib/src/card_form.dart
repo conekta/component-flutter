@@ -1,4 +1,5 @@
 import 'package:conekta_component/l10n/app_localizations.dart';
+import 'package:conekta_component/src/services/result.dart';
 import 'package:flutter/material.dart';
 import 'models/card_model.dart';
 import 'fields/card_cvv_field.dart';
@@ -11,7 +12,7 @@ import 'utils/theme.dart';
 import 'widgets/secure_payment_section.dart';
 
 class CardForm extends StatefulWidget {
-  final void Function(Map<String, dynamic> result)? onSubmitted;
+  final void Function(Result<Map<String, dynamic>> result)? onSubmitted;
   final PaymentService paymentService;
   final Locale locale;
   final ThemeData? themeData;
@@ -70,25 +71,22 @@ class _CardFormState extends State<CardForm> {
 
       try {
         final result = await widget.paymentService.sendPayment(card);
-        cardNumberController.clear();
-        nameController.clear();
-        expiryDateController.clear();
-        cvvController.clear();
-        widget.onSubmitted?.call({
-          'success': true,
-          'data': result,
-        });
-      } catch (e) {
-        widget.onSubmitted?.call({
-          'success': false,
-          'error': e,
-        });
+        cleanFields();
+        widget.onSubmitted?.call(Success(result));
+      } on Exception catch (  e ) {
+        widget.onSubmitted?.call(Failure(e));
       } finally {
         setState(() {
           _isLoading = false;
         });
       }
     }
+  }
+  cleanFields(){
+    cardNumberController.clear();
+    nameController.clear();
+    expiryDateController.clear();
+    cvvController.clear();
   }
 
   @override
