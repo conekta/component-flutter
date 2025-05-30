@@ -19,7 +19,7 @@ class PaymentService {
     http.Client? client,
   }) : client = client ?? http.Client();
 
-  Future<Map<String, dynamic>> sendPayment(CardModel card) async {
+  Future<Map<String, dynamic>> sendPayment(CardModel card, String locale) async {
     final url = Uri.parse('$host/tokens');
 
     final response = await client.post(
@@ -28,6 +28,7 @@ class PaymentService {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $apiKey',
         'Accept': 'application/vnd.conekta-v2.2.0+json',
+        'Accept-Language': locale,
         'X-Tokenization-Source': 'flutter',
         'publisher': 'conekta',
         'origin': 'flutter sdk',

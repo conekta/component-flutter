@@ -70,7 +70,7 @@ class _CardFormState extends State<CardForm> {
       );
 
       try {
-        final result = await widget.paymentService.sendPayment(card);
+        final result = await widget.paymentService.sendPayment(card, widget.locale.languageCode);
         cleanFields();
         widget.onSubmitted?.call(Success(result));
       } on Exception catch (  e ) {

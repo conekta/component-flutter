@@ -46,3 +46,5 @@ app.*.map.json
 /android/build/reports/problems
 lib/credit_card_input_flutter/build
 pubspec.lock
+ios/
+.metadata
