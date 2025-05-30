@@ -149,7 +149,7 @@ class _CardFormState extends State<CardForm> {
                                       horizontal: 4.0),
                                   child: SvgPicture.network(
                                     'https://assets.conekta.com/checkout/img/logos/visa.svg',
-                                    height: 26,
+                                    height: 20,
                                   ),
                                 ),
                                 Padding(
@@ -157,7 +157,7 @@ class _CardFormState extends State<CardForm> {
                                       horizontal: 4.0),
                                   child: SvgPicture.network(
                                     'https://assets.conekta.com/checkout/img/logos/amex.svg',
-                                    height: 26,
+                                    height: 20,
                                   ),
                                 ),
                                 Padding(
@@ -165,7 +165,7 @@ class _CardFormState extends State<CardForm> {
                                       horizontal: 4.0),
                                   child: SvgPicture.network(
                                     'https://assets.conekta.com/checkout/img/logos/master-card.svg',
-                                    height: 26,
+                                    height: 20,
                                   ),
                                 ),
                               ],
@@ -224,7 +224,7 @@ class _CardFormState extends State<CardForm> {
                                                 horizontal: 4.0),
                                             child: SvgPicture.network(
                                               'https://assets.conekta.com/cpanel/statics/assets/img/icons/cvv-icon-32x32.svg',
-                                              height: 36,
+                                              height: 30,
                                             ),
                                           ),
                                         ],
