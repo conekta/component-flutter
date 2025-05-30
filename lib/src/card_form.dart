@@ -107,7 +107,7 @@ class _CardFormState extends State<CardForm> {
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Colors.grey,
+                        color: Theme.of(themedContext).colorScheme.shadow,
                         width: 1,
                       ),
                       borderRadius: BorderRadius.circular(6),
@@ -126,13 +126,7 @@ class _CardFormState extends State<CardForm> {
                           controller: nameController,
                           decoration: InputDecoration(
                               hintText: AppLocalizations.of(localizedContext)!
-                                  .cardNameHint,
-                              hintStyle: TextStyle(fontSize: 14),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(6),
-                                borderSide:
-                                    const BorderSide(color: Colors.grey),
-                              )),
+                                  .cardNameHint),
                         ),
                         const SizedBox(height: 16),
                         Text(
@@ -146,11 +140,6 @@ class _CardFormState extends State<CardForm> {
                           decoration: InputDecoration(
                             hintText: AppLocalizations.of(localizedContext)!
                                 .cardNumberHint,
-                            hintStyle: TextStyle(fontSize: 14),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(6),
-                              borderSide: const BorderSide(color: Colors.grey),
-                            ),
                             suffixIcon: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -159,7 +148,7 @@ class _CardFormState extends State<CardForm> {
                                       horizontal: 4.0),
                                   child: SvgPicture.network(
                                     'https://assets.conekta.com/checkout/img/logos/visa.svg',
-                                    height: 20,
+                                    height: 26,
                                   ),
                                 ),
                                 Padding(
@@ -167,7 +156,7 @@ class _CardFormState extends State<CardForm> {
                                       horizontal: 4.0),
                                   child: SvgPicture.network(
                                     'https://assets.conekta.com/checkout/img/logos/amex.svg',
-                                    height: 20,
+                                    height: 26,
                                   ),
                                 ),
                                 Padding(
@@ -175,7 +164,7 @@ class _CardFormState extends State<CardForm> {
                                       horizontal: 4.0),
                                   child: SvgPicture.network(
                                     'https://assets.conekta.com/checkout/img/logos/master-card.svg',
-                                    height: 20,
+                                    height: 26,
                                   ),
                                 ),
                               ],
@@ -203,12 +192,6 @@ class _CardFormState extends State<CardForm> {
                                       hintText:
                                           AppLocalizations.of(localizedContext)!
                                               .expiryDateHint,
-                                      hintStyle: TextStyle(fontSize: 14),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                        borderSide: const BorderSide(
-                                            color: Colors.grey),
-                                      ),
                                     ),
                                   ),
                                 ],
@@ -232,12 +215,6 @@ class _CardFormState extends State<CardForm> {
                                       hintText:
                                           AppLocalizations.of(localizedContext)!
                                               .cvvHint,
-                                      hintStyle: TextStyle(fontSize: 14),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                        borderSide: const BorderSide(
-                                            color: Colors.grey),
-                                      ),
                                       suffixIcon: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
@@ -246,7 +223,7 @@ class _CardFormState extends State<CardForm> {
                                                 horizontal: 4.0),
                                             child: SvgPicture.network(
                                               'https://assets.conekta.com/cpanel/statics/assets/img/icons/cvv-icon-32x32.svg',
-                                              height: 20,
+                                              height: 36,
                                             ),
                                           ),
                                         ],
