@@ -106,6 +106,7 @@ class _CardFormState extends State<CardForm> {
                     margin: const EdgeInsets.all(16),
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
+                      color: Theme.of(themedContext).colorScheme.surface,
                       border: Border.all(
                         color: Theme.of(themedContext).colorScheme.shadow,
                         width: 1,
