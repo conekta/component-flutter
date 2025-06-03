@@ -1,6 +1,5 @@
 import 'package:conekta_component/card_input_flutter.dart';
 import 'package:conekta_component/l10n/app_localizations.dart';
-import 'package:conekta_component/src/services/result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
