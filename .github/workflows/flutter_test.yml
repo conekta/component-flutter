@@ -46,7 +46,7 @@ jobs:
       - name: Set up Android SDK
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 27
+          api-level: 31
           heap-size: 1024M
           disable-animations: false
           cores: 8
