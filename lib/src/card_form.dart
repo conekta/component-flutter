@@ -8,6 +8,7 @@ import 'fields/card_number_field.dart';
 import 'fields/card_name_field.dart';
 import 'services/payment_service.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'utils/dark-theme.dart';
 import 'utils/theme.dart';
 import 'widgets/secure_payment_section.dart';
 
@@ -95,8 +96,11 @@ class _CardFormState extends State<CardForm> {
         context: context,
         locale: widget.locale,
         child: Builder(builder: (localizedContext) {
+          final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+          final effectiveTheme = widget.themeData ??
+          (isDarkMode ? darkTheme : cardInputTheme);
           return Theme(
-            data: _effectiveTheme,
+            data: effectiveTheme,
             child: Builder(builder: (themedContext) {
               return Form(
                 key: _formKey,
