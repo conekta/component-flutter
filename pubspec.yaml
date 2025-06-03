@@ -18,6 +18,8 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: ^5.0.0
+  integration_test:
+    sdk: flutter
   flutter_test:
       sdk: flutter
   test: ^1.16.0
@@ -28,3 +30,4 @@ flutter:
 platforms:
   android:
   ios:
+  web:

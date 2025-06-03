@@ -1,13 +1,14 @@
 import 'package:conekta_component/l10n/app_localizations.dart';
 import 'package:conekta_component/src/services/result.dart';
 import 'package:flutter/material.dart';
-import 'models/card_model.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 import 'fields/card_cvv_field.dart';
 import 'fields/card_expiry_fields.dart';
-import 'fields/card_number_field.dart';
 import 'fields/card_name_field.dart';
+import 'fields/card_number_field.dart';
+import 'models/card_model.dart';
 import 'services/payment_service.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'utils/theme.dart';
 import 'widgets/secure_payment_section.dart';
 
@@ -70,10 +71,11 @@ class _CardFormState extends State<CardForm> {
       );
 
       try {
-        final result = await widget.paymentService.sendPayment(card, widget.locale.languageCode);
+        final result = await widget.paymentService
+            .sendPayment(card, widget.locale.languageCode);
         cleanFields();
         widget.onSubmitted?.call(Success(result));
-      } on Exception catch (  e ) {
+      } on Exception catch (e) {
         widget.onSubmitted?.call(Failure(e));
       } finally {
         setState(() {
@@ -82,7 +84,8 @@ class _CardFormState extends State<CardForm> {
       }
     }
   }
-  cleanFields(){
+
+  cleanFields() {
     cardNumberController.clear();
     nameController.clear();
     expiryDateController.clear();
