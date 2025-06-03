@@ -13,7 +13,6 @@ void main() {
   );
   group('SecurePaymentSection Widget Tests', () {
     testWidgets('renders all expected elements', (WidgetTester tester) async {
-
       await tester.pumpWidget(
         MaterialApp(
           localizationsDelegates: const [
@@ -26,7 +25,7 @@ void main() {
             Locale('es', ''),
           ],
           home: Scaffold(
-            body: SecurePaymentSection(logo:  localLogo),
+            body: SecurePaymentSection(logo: localLogo),
           ),
         ),
       );
@@ -39,7 +38,8 @@ void main() {
         textTheme: const TextTheme(
           labelSmall: TextStyle(fontSize: 10, color: Colors.blue),
         ),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple, shadow: Colors.grey),
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Colors.purple, shadow: Colors.grey),
       );
 
       await tester.pumpWidget(
@@ -55,18 +55,21 @@ void main() {
             Locale('es', ''),
           ],
           home: Scaffold(
-            body: SecurePaymentSection(logo:  localLogo),
+            body: SecurePaymentSection(logo: localLogo),
           ),
         ),
       );
       final Text textWidget = tester.widget(find.text(title));
-      expect(textWidget.style?.fontSize, testTheme.textTheme.labelSmall?.fontSize);
+      expect(
+          textWidget.style?.fontSize, testTheme.textTheme.labelSmall?.fontSize);
       expect(textWidget.style?.color, testTheme.textTheme.labelSmall?.color);
     });
 
-    testWidgets('Divider has correct color from theme', (WidgetTester tester) async {
+    testWidgets('Divider has correct color from theme',
+        (WidgetTester tester) async {
       final testTheme = ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green, shadow: Colors.red),
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Colors.green, shadow: Colors.red),
       );
 
       await tester.pumpWidget(
@@ -82,7 +85,7 @@ void main() {
             Locale('es', ''),
           ],
           home: Scaffold(
-            body: SecurePaymentSection(logo:  localLogo),
+            body: SecurePaymentSection(logo: localLogo),
           ),
         ),
       );

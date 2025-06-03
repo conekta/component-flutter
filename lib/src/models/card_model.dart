@@ -2,8 +2,8 @@ class CardModel {
   final String cardNumber;
   final String name;
   final String cvv;
-  final String expiryMonth; // formato MM
-  final String expiryYear;  // formato YY
+  final String expiryMonth;
+  final String expiryYear;
 
   CardModel({
     required this.cardNumber,
