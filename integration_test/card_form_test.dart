@@ -41,7 +41,7 @@ void main() {
     await tester.enterText(find.byType(CardExpiryFields), '12/25');
     await tester.enterText(find.byType(CardCVVField), '123');
 
-    await tester.tap(find.byType(ElevatedButton));
+    await tester.tap(find.byType(ElevatedButton), warnIfMissed: false);
     await tester.pumpAndSettle();
 
     expect(submitted, isTrue);
