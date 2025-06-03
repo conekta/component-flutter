@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:conekta_component/src/utils/colors.dart';
-import 'package:conekta_component/src/utils/dark-colors.dart';
 import '../../l10n/app_localizations.dart';
 import '../utils/theme_extensions.dart';
 
@@ -48,7 +46,9 @@ class _DefaultLogo extends StatelessWidget {
     return SvgPicture.network(
       'https://assets.conekta.com/cpanel/statics/assets/img/conekta_white.svg',
       height: 20.0,
-      color: context.isDarkMode ? Colors.white : null,
+      colorFilter: context.isDarkMode
+          ? const ColorFilter.mode(Colors.white, BlendMode.srcIn)
+          : null,
     );
   }
 }
