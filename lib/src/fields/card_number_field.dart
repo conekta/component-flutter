@@ -35,14 +35,14 @@ class CardNumberField extends StatelessWidget {
       inputFormatters: [
         FilteringTextInputFormatter.digitsOnly,
         LengthLimitingTextInputFormatter(19),
-        CardNumberInputFormatter(),
+        _CardNumberInputFormatter(),
       ],
       validator: (value) => _validateCardNumber(context, value),
     );
   }
 }
 
-class CardNumberInputFormatter extends TextInputFormatter {
+class _CardNumberInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
     TextEditingValue oldValue,
@@ -61,7 +61,7 @@ class CardNumberInputFormatter extends TextInputFormatter {
     }
     final formatted = buffer.toString();
     int cursorPosition = formatted.length;
-    // Ajustar la posición del cursor si el usuario borra o inserta en medio
+    // Adjust the cursor position if the user deletes or inserts in the middle
     if (newValue.selection.baseOffset < formatted.length) {
       int nonSpaceCount = 0;
       for (int i = 0; i < formatted.length; i++) {

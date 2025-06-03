@@ -1,6 +1,8 @@
+import 'dart:convert';
+
 import 'package:conekta_component/src/version.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
+
 import '../models/card_model.dart';
 
 class PaymentService {
@@ -19,7 +21,8 @@ class PaymentService {
     http.Client? client,
   }) : client = client ?? http.Client();
 
-  Future<Map<String, dynamic>> sendPayment(CardModel card, String locale) async {
+  Future<Map<String, dynamic>> sendPayment(
+      CardModel card, String locale) async {
     final url = Uri.parse('$host/tokens');
 
     final response = await client.post(
