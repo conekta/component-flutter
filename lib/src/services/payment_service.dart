@@ -8,7 +8,7 @@ class PaymentService {
 
   /// Public API key used to authenticate with Conekta.
   ///
-  /// For more information, see the [Conekta API keys documentation](https://developers.conekta.com/docs/api-keys-producción).
+  /// For more information, see the [Conekta API keys documentation](https://developers.conekta.com/docs/api-keys-producci%C3%B3n#llave-p%C3%BAblica).
   final String apiKey;
   final String host;
   static const String _defaultHost = 'https://api.conekta.io';
