@@ -2,6 +2,7 @@ import 'package:conekta_component/card_input_flutter.dart';
 import 'package:conekta_component/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+// ignore_for_file: type=lint
 
 void main() {
   runApp(const MyApp());

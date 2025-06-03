@@ -17,9 +17,14 @@ dependencies:
   google_fonts: ^4.0.0
 
 dev_dependencies:
-  flutter_lints: ^5.0.0  
+  flutter_lints: ^5.0.0
+  flutter_test:
+      sdk: flutter
+  test: ^1.16.0
 flutter:
   generate: true
+  assets:
+    - test/assets/conekta-logo-blue-full.svg
 platforms:
   android:
   ios:
