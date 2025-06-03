@@ -51,4 +51,7 @@ jobs:
           disable-animations: false
           cores: 8
           ram-size: 12288M
+          target: google_apis
+          arch: x86_64
+          profile: pixel
           script: flutter test integration_test/
