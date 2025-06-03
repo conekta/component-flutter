@@ -36,13 +36,11 @@ void main() {
       ),
     );
 
-    // Simula llenar el formulario
     await tester.enterText(find.byType(CardNameField), 'Juan Pérez');
     await tester.enterText(find.byType(CardNumberField), '4242424242424242');
     await tester.enterText(find.byType(CardExpiryFields), '12/25');
     await tester.enterText(find.byType(CardCVVField), '123');
 
-    // Simula tap en el botón
     await tester.tap(find.byType(ElevatedButton));
     await tester.pumpAndSettle();
 

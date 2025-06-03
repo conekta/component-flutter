@@ -48,3 +48,4 @@ lib/credit_card_input_flutter/build
 pubspec.lock
 ios/
 .metadata
+/android/.kotlin
