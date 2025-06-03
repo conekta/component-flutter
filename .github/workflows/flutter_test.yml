@@ -36,7 +36,7 @@ jobs:
         with:
           api-level: 31
           heap-size: 1024M
-          disable-animations: false
+          disable-animations: true
           cores: 8
           ram-size: 12288M
           target: google_apis
