@@ -11,6 +11,7 @@ import 'models/card_model.dart';
 import 'services/payment_service.dart';
 import 'utils/dark-theme.dart';
 import 'utils/theme.dart';
+import 'utils/theme_extensions.dart';
 import 'widgets/secure_payment_section.dart';
 
 class CardForm extends StatefulWidget {
@@ -30,11 +31,6 @@ class CardForm extends StatefulWidget {
 }
 
 class _CardFormState extends State<CardForm> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   final _formKey = GlobalKey<FormState>();
   final expiryDateController = TextEditingController();
 
@@ -96,9 +92,8 @@ class _CardFormState extends State<CardForm> {
         context: context,
         locale: widget.locale,
         child: Builder(builder: (localizedContext) {
-          final isDarkMode = Theme.of(context).brightness == Brightness.dark;
           final effectiveTheme = widget.themeData ??
-          (isDarkMode ? darkTheme : cardInputTheme);
+              (context.isDarkMode ? darkTheme : cardInputTheme);
           return Theme(
             data: effectiveTheme,
             child: Builder(builder: (themedContext) {

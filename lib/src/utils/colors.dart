@@ -6,5 +6,4 @@ class AppColors {
   static const label = Color(0xFF585987);
   static const text = Color(0xFF212247);
   static const disabled = Color(0xFFD8D8E8);
-  static const logoUrl = 'https://assets.conekta.com/cpanel/statics/assets/img/conekta_white.svg';
 }

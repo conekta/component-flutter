@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:conekta_component/src/utils/colors.dart';
 import 'package:conekta_component/src/utils/dark-colors.dart';
 import '../../l10n/app_localizations.dart';
+import '../utils/theme_extensions.dart';
 
 class SecurePaymentSection extends StatelessWidget {
   final Widget logo;
@@ -44,12 +45,10 @@ class _DefaultLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final isDarkMode = theme.brightness == Brightness.dark;
-    final logoUrl = isDarkMode ? DarkAppColors.logoUrl : AppColors.logoUrl;
     return SvgPicture.network(
-      logoUrl,
+      'https://assets.conekta.com/cpanel/statics/assets/img/conekta_white.svg',
       height: 20.0,
+      color: context.isDarkMode ? Colors.white : null,
     );
   }
 }

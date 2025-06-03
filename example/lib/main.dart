@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       darkTheme: darkTheme,
       theme: cardInputTheme,
       home: const CreditCardFormScreen(),
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.system,
       localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
