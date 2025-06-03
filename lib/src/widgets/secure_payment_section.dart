@@ -3,7 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../l10n/app_localizations.dart';
 
 class SecurePaymentSection extends StatelessWidget {
-  const SecurePaymentSection({super.key});
+  final Widget logo;
+  const SecurePaymentSection({super.key, this.logo = const _DefaultLogo()});
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +24,7 @@ class SecurePaymentSection extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8.0), // Adjust spacing as needed
-          SvgPicture.network(
-            'https://assets.conekta.com/cpanel/statics/assets/img/conekta-logo-blue-full.svg',
-            height: 20.0, // Adjust size as needed
-          ),
+          logo,
           Padding(
             padding: const EdgeInsets.only(bottom: 15, top: 15),
             child: Divider(
@@ -35,6 +33,18 @@ class SecurePaymentSection extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _DefaultLogo extends StatelessWidget {
+  const _DefaultLogo();
+
+  @override
+  Widget build(BuildContext context) {
+    return SvgPicture.network(
+      'https://assets.conekta.com/cpanel/statics/assets/img/conekta-logo-blue-full.svg',
+      height: 20.0,
     );
   }
 }
