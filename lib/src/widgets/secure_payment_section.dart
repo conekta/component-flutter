@@ -5,13 +5,12 @@ import 'package:conekta_component/src/utils/dark-colors.dart';
 import '../../l10n/app_localizations.dart';
 
 class SecurePaymentSection extends StatelessWidget {
-  const SecurePaymentSection({super.key});
+  final Widget logo;
+  const SecurePaymentSection({super.key, this.logo = const _DefaultLogo()});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final logoUrl = isDarkMode ? DarkAppColors.logoUrl : AppColors.logoUrl;
     return Padding(
       padding: const EdgeInsets.all(1.0),
       child: Column(
@@ -27,11 +26,7 @@ class SecurePaymentSection extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8.0), // Adjust spacing as needed
-          SvgPicture.network(
-            logoUrl,
-            height: 20.0, // Adjust size as needed
-            color: isDarkMode ? Colors.white : null,
-          ),
+          logo,
           Padding(
             padding: const EdgeInsets.only(bottom: 15, top: 15),
             child: Divider(
@@ -40,6 +35,21 @@ class SecurePaymentSection extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _DefaultLogo extends StatelessWidget {
+  const _DefaultLogo();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
+    final logoUrl = isDarkMode ? DarkAppColors.logoUrl : AppColors.logoUrl;
+    return SvgPicture.network(
+      logoUrl,
+      height: 20.0,
     );
   }
 }

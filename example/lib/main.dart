@@ -4,6 +4,7 @@ import 'package:conekta_component/src/utils/dark-theme.dart';
 import 'package:conekta_component/src/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+// ignore_for_file: type=lint
 
 void main() {
   runApp(const MyApp());
