@@ -47,4 +47,8 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 27
+          heap-size: 1024M
+          disable-animations: false
+          cores: 8
+          ram-size: 12288M
           script: flutter test integration_test/
