@@ -9,7 +9,9 @@ import 'fields/card_name_field.dart';
 import 'fields/card_number_field.dart';
 import 'models/card_model.dart';
 import 'services/payment_service.dart';
+import 'utils/dark_theme.dart';
 import 'utils/theme.dart';
+import 'utils/theme_extensions.dart';
 import 'widgets/secure_payment_section.dart';
 
 class CardForm extends StatefulWidget {
@@ -29,14 +31,6 @@ class CardForm extends StatefulWidget {
 }
 
 class _CardFormState extends State<CardForm> {
-  late ThemeData _effectiveTheme;
-
-  @override
-  void initState() {
-    super.initState();
-    _effectiveTheme = widget.themeData ?? cardInputTheme;
-  }
-
   final _formKey = GlobalKey<FormState>();
   final expiryDateController = TextEditingController();
 
@@ -98,8 +92,10 @@ class _CardFormState extends State<CardForm> {
         context: context,
         locale: widget.locale,
         child: Builder(builder: (localizedContext) {
+          final effectiveTheme = widget.themeData ??
+              (context.isDarkMode ? darkTheme : cardInputTheme);
           return Theme(
-            data: _effectiveTheme,
+            data: effectiveTheme,
             child: Builder(builder: (themedContext) {
               return Form(
                 key: _formKey,

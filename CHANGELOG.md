@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.0.1-beta.4] - 2025-06-03
+
+### Added
+- dark mode was added
+
 ## [0.0.1-beta.3] - 2025-05-30
 
 ### Fix

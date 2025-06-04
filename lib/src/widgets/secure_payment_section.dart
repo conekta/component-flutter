@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../l10n/app_localizations.dart';
+import '../utils/theme_extensions.dart';
 
 class SecurePaymentSection extends StatelessWidget {
   final Widget logo;
@@ -43,8 +44,11 @@ class _DefaultLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SvgPicture.network(
-      'https://assets.conekta.com/cpanel/statics/assets/img/conekta-logo-blue-full.svg',
+      'https://assets.conekta.com/cpanel/statics/assets/img/conekta_white.svg',
       height: 20.0,
+      colorFilter: context.isDarkMode
+          ? const ColorFilter.mode(Colors.white, BlendMode.srcIn)
+          : null,
     );
   }
 }

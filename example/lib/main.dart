@@ -1,5 +1,7 @@
 import 'package:conekta_component/card_input_flutter.dart';
 import 'package:conekta_component/l10n/app_localizations.dart';
+import 'package:conekta_component/src/utils/dark_theme.dart';
+import 'package:conekta_component/src/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 // ignore_for_file: type=lint
@@ -14,7 +16,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      darkTheme: darkTheme,
+      theme: cardInputTheme,
       home: const CreditCardFormScreen(),
+      themeMode: ThemeMode.system,
       localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
