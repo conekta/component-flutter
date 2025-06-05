@@ -2,7 +2,7 @@
 ## [0.0.1-beta.5] - 2025-06-05
 
 ### Added
-- cipher data
+- Encrypt card data before sending to API
 
 ## [0.0.1-beta.4] - 2025-06-03
 
