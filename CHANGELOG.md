@@ -1,4 +1,8 @@
 # Changelog
+## [0.0.1-beta.5] - 2025-06-05
+
+### Added
+- cipher data
 
 ## [0.0.1-beta.4] - 2025-06-03
 

@@ -4,12 +4,11 @@ import 'dark_colors.dart';
 
 final ThemeData darkTheme = ThemeData(
   primaryColor: DarkAppColors.primary,
-  colorScheme:const ColorScheme.dark(
-    primary: DarkAppColors.primary,
-    onPrimary: Colors.white, //
-    surface: DarkAppColors.background,
-    shadow: DarkAppColors.disabled
-  ),
+  colorScheme: const ColorScheme.dark(
+      primary: DarkAppColors.primary,
+      onPrimary: Colors.white, //
+      surface: DarkAppColors.background,
+      shadow: DarkAppColors.disabled),
   textTheme: TextTheme(
     bodyMedium: GoogleFonts.inter(color: DarkAppColors.text),
     labelSmall: GoogleFonts.inter(
@@ -25,7 +24,8 @@ final ThemeData darkTheme = ThemeData(
   ),
   inputDecorationTheme: InputDecorationTheme(
     hintStyle: GoogleFonts.inter(color: DarkAppColors.disabled, fontSize: 14),
-    contentPadding: const EdgeInsets.only(left: 14, right: 14, top: 0, bottom: 0),
+    contentPadding:
+        const EdgeInsets.only(left: 14, right: 14, top: 0, bottom: 0),
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(color: DarkAppColors.disabled),
       borderRadius: BorderRadius.circular(6),

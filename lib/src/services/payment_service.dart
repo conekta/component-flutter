@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:conekta_component/src/version.dart';
+import 'package:encrypt/encrypt.dart';
 import 'package:http/http.dart' as http;
 
+import '../keys/public_key_provider.dart';
 import '../models/card_model.dart';
 
 class PaymentService {
@@ -12,7 +14,11 @@ class PaymentService {
   ///
   /// For more information, see the [Conekta API keys documentation](https://developers.conekta.com/docs/api-keys-producci%C3%B3n#llave-p%C3%BAblica).
   final String apiKey;
+
+  /// The base URL for the Conekta API.
   final String host;
+
+  /// The default base URL for the Conekta API
   static const String _defaultHost = 'https://api.conekta.io';
 
   PaymentService({
@@ -44,11 +50,11 @@ class PaymentService {
       },
       body: jsonEncode({
         'card': {
-          'number': card.cardNumber,
-          'name': card.name,
-          'cvc': card.cvv,
-          'exp_month': card.expiryMonth,
-          'exp_year': card.expiryYear,
+          'number': encryptCardField(card.cardNumber),
+          'name': encryptCardField(card.name),
+          'cvc': encryptCardField(card.cvv),
+          'exp_month': encryptCardField(card.expiryMonth),
+          'exp_year': encryptCardField(card.expiryYear),
         }
       }),
     );
@@ -60,6 +66,16 @@ class PaymentService {
       statusCode: response.statusCode,
       message: response.body,
     );
+  }
+
+  /// encryptCardField encrypts a card field using the public key.
+  String encryptCardField(String plainText) {
+    final publicKey = PublicKeyProvider().publicKey;
+    final encrypter = Encrypter(RSA(
+      publicKey: publicKey,
+      encoding: RSAEncoding.PKCS1,
+    ));
+    return encrypter.encrypt(plainText).base64;
   }
 }
 
