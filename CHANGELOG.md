@@ -1,6 +1,8 @@
 # Changelog
-## [0.0.1-beta.5] - 2025-06-05
+## [1.0.0] - 2025-09-30
+- Final release
 
+## [0.0.1-beta.5] - 2025-06-05
 ### Added
 - Encrypt card data before sending to API
 
