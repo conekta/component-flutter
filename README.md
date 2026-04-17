@@ -2,7 +2,7 @@
 
 A customizable Flutter widget for securely collecting credit card information. This library provides a user-friendly form with built-in validation and localization support, making it easy to integrate into your Flutter applications for payment processing.
 
-**Current Version:** 1.0.0
+**Current Version:** 1.0.1
 
 ## Features
 
