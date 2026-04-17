@@ -28,7 +28,8 @@ void main() {
         CardForm(paymentService: paymentService),
       ));
 
-      expect(find.byType(SecurePaymentSection), findsOneWidget);
+      expect(find.text('PAGA SEGURA CON'), findsOneWidget);
+      tester.takeException();
     });
 
     testWidgets('hides SecurePaymentSection when showSecurePaymentBadge is false',
@@ -40,6 +41,7 @@ void main() {
         ),
       ));
 
+      expect(find.text('PAGA SEGURA CON'), findsNothing);
       expect(find.byType(SecurePaymentSection), findsNothing);
     });
 

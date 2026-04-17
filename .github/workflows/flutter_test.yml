@@ -9,16 +9,10 @@ on:
 jobs:
   integration-test:
     name: integration-test
-    runs-on: aws-runner-set
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
-
-      - name: Install xz-utils
-        run: |
-          if ! command -v xz >/dev/null 2>&1; then
-            sudo apt-get update && sudo apt-get install -y xz-utils
-          fi
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -26,6 +20,7 @@ jobs:
           flutter-version: '3.x'
           channel: 'stable'
           cache: true
+
       - name: Get Flutter dependencies
         run: flutter pub get
 
@@ -37,7 +32,8 @@ jobs:
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
-      - name: Set up Android SDK
+
+      - name: Run integration tests on Android emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 31
