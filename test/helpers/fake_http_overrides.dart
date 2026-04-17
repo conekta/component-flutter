@@ -24,6 +24,10 @@ class _FakeHttpClient implements HttpClient {
   Future<HttpClientRequest> getUrl(Uri url) async => _FakeHttpClientRequest();
 
   @override
+  Future<HttpClientRequest> openUrl(String method, Uri url) async =>
+      _FakeHttpClientRequest();
+
+  @override
   void close({bool force = false}) {}
 
   @override
