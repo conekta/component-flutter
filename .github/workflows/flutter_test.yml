@@ -10,9 +10,19 @@ jobs:
   integration-test:
     name: integration-test
     runs-on: ubuntu-latest
+    env:
+      API_LEVEL: 30
+      TARGET: default
+      ARCH: x86_64
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+
+      - name: Run Mockoon CLI
+        uses: mockoon/cli-action@v3
+        with:
+          data-file: 'https://raw.githubusercontent.com/conekta/openapi/main/mocks/conekta_api.json'
+          port: 3000
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -21,11 +31,23 @@ jobs:
           channel: 'stable'
           cache: true
 
+      - name: Cache Gradle and pub
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.pub-cache
+            android/.gradle
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties', 'pubspec.lock') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
+
       - name: Get Flutter dependencies
         run: flutter pub get
 
-      - name: Accept Android licenses
-        run: yes | flutter doctor --android-licenses
+      - name: Pre-build debug APK
+        run: flutter build apk --debug
 
       - name: Enable KVM
         run: |
@@ -33,16 +55,42 @@ jobs:
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
 
+      - name: AVD cache
+        uses: actions/cache@v5
+        id: avd-cache
+        with:
+          path: |
+            ~/.android/avd/*
+            ~/.android/adb*
+          key: avd-${{ env.API_LEVEL }}-${{ env.TARGET }}-${{ env.ARCH }}
+
+      - name: Create AVD snapshot
+        if: steps.avd-cache.outputs.cache-hit != 'true'
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ env.API_LEVEL }}
+          target: ${{ env.TARGET }}
+          arch: ${{ env.ARCH }}
+          cores: 4
+          ram-size: 4096M
+          heap-size: 1024M
+          disable-animations: true
+          force-avd-creation: false
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-snapshot-save
+          script: echo "Generated AVD snapshot for caching."
+
       - name: Run integration tests on Android emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 31
-          heap-size: 1024M
-          disable-animations: true
+          api-level: ${{ env.API_LEVEL }}
+          target: ${{ env.TARGET }}
+          arch: ${{ env.ARCH }}
           cores: 4
           ram-size: 4096M
-          target: google_apis
-          arch: x86_64
+          heap-size: 1024M
+          disable-animations: true
+          force-avd-creation: false
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           script: flutter test integration_test/
 
   test:
