@@ -118,7 +118,7 @@ class _CardFormState extends State<CardForm> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (widget.config.showSecurePaymentBadge)
+                        if (!widget.config.hideLogo)
                           const SecurePaymentSection(),
                         Text(
                             AppLocalizations.of(localizedContext)!

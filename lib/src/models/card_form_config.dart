@@ -1,9 +1,9 @@
 class CardFormConfig {
-  final bool showSecurePaymentBadge;
+  final bool hideLogo;
   final String? submitButtonText;
 
   const CardFormConfig({
-    this.showSecurePaymentBadge = true,
+    this.hideLogo = false,
     this.submitButtonText,
   });
 }

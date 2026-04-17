@@ -56,7 +56,7 @@ class CreditCardFormScreen extends StatelessWidget {
           paymentService: paymentService,
           locale: const Locale('es'),
           config: const CardFormConfig(
-            showSecurePaymentBadge: true,
+            hideLogo: false,
             submitButtonText: 'Pagar ahora',
           ),
         ),
@@ -72,7 +72,7 @@ class CreditCardFormScreen extends StatelessWidget {
 /// CardForm(
 ///   paymentService: paymentService,
 ///   onSubmitted: _onSubmitted,
-///   config: const CardFormConfig(showSecurePaymentBadge: false),
+///   config: const CardFormConfig(hideLogo: true),
 /// )
 /// ```
 ///
