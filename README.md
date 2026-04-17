@@ -16,7 +16,8 @@ A customizable Flutter widget for securely collecting credit card information. T
 
 ## Minimum Requirements
 
-*   **Dart SDK:** Version 2.17.0 or higher
+*   **Dart SDK:** Version 3.7.0 or higher
+*   **Flutter SDK:** Version 3.27.0 or higher
 
 ## Installation
 
