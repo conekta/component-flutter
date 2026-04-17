@@ -90,6 +90,12 @@ class _FakeHttpClientResponse extends Stream<List<int>>
   bool get persistentConnection => false;
 
   @override
+  List<RedirectInfo> get redirects => const [];
+
+  @override
+  List<Cookie> get cookies => const [];
+
+  @override
   HttpClientResponseCompressionState get compressionState =>
       HttpClientResponseCompressionState.notCompressed;
 
