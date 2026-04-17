@@ -78,7 +78,16 @@ class _FakeHttpClientResponse extends Stream<List<int>>
   int statusCode = 200;
 
   @override
+  String reasonPhrase = 'OK';
+
+  @override
   int get contentLength => _fakeSvgBytes.length;
+
+  @override
+  bool get isRedirect => false;
+
+  @override
+  bool get persistentConnection => false;
 
   @override
   HttpClientResponseCompressionState get compressionState =>

@@ -44,7 +44,7 @@ void main() {
 
     await tester.enterText(find.byType(CardNameField), 'Juan Pérez');
     await tester.enterText(find.byType(CardNumberField), '4242424242424242');
-    await tester.enterText(find.byType(CardExpiryFields), '12/25');
+    await tester.enterText(find.byType(CardExpiryFields), '12/30');
     await tester.enterText(find.byType(CardCVVField), '123');
 
     await tester.tap(find.byType(ElevatedButton));
