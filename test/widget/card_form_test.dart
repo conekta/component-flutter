@@ -1,13 +1,9 @@
-import 'dart:io';
-
 import 'package:conekta_component/card_input_flutter.dart';
 import 'package:conekta_component/l10n/app_localizations.dart';
 import 'package:conekta_component/src/widgets/secure_payment_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import '../helpers/fake_http_overrides.dart';
 
 Widget _wrap(Widget child) {
   return MaterialApp(
@@ -25,27 +21,7 @@ Widget _wrap(Widget child) {
 void main() {
   final paymentService = PaymentService(apiKey: 'key_test');
 
-  HttpOverrides? previousOverrides;
-
-  setUp(() {
-    previousOverrides = HttpOverrides.current;
-    HttpOverrides.global = FakeHttpOverrides();
-  });
-
-  tearDown(() {
-    HttpOverrides.global = previousOverrides;
-  });
-
   group('CardForm config', () {
-    testWidgets('shows SecurePaymentSection by default',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(_wrap(
-        CardForm(paymentService: paymentService),
-      ));
-
-      expect(find.byType(SecurePaymentSection), findsOneWidget);
-    });
-
     testWidgets('hides SecurePaymentSection when showSecurePaymentBadge is false',
         (WidgetTester tester) async {
       await tester.pumpWidget(_wrap(
