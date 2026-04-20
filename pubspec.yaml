@@ -4,7 +4,7 @@ version: 1.0.1
 homepage: https://www.github.com/conekta/component-flutter
 repository: https://www.github.com/conekta/component-flutter
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: ">=3.3.0 <4.0.0"
 
 dependencies:
   flutter:
