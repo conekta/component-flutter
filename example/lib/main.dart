@@ -56,7 +56,6 @@ class CreditCardFormScreen extends StatelessWidget {
           paymentService: paymentService,
           locale: const Locale('es'),
           config: const CardFormConfig(
-            hideLogo: false,
             submitButtonText: 'Pagar ahora',
           ),
         ),
@@ -65,17 +64,6 @@ class CreditCardFormScreen extends StatelessWidget {
   }
 }
 
-/// Example: hide the "Paga segura con Conekta" badge and keep the localized
-/// submit label ("Continuar"/"Continue") by leaving [submitButtonText] as null.
-///
-/// ```dart
-/// CardForm(
-///   paymentService: paymentService,
-///   onSubmitted: _onSubmitted,
-///   config: const CardFormConfig(hideLogo: true),
-/// )
-/// ```
-///
 /// Example: English locale with a custom submit label.
 ///
 /// ```dart
