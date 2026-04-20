@@ -103,7 +103,7 @@ jobs:
 
   test:
     name: Run Flutter Tests (Flutter ${{ matrix.flutter-version }})
-    runs-on: aws-runner-set
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
