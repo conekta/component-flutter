@@ -6,7 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final String title = 'PAGA SEGURA CON';
+  const String title = 'PAGA SEGURA CON';
   final Widget localLogo = SvgPicture.asset(
     'test/assets/conekta-logo-blue-full.svg',
     height: 20.0,

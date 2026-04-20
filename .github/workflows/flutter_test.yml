@@ -10,9 +10,30 @@ jobs:
   integration-test:
     name: integration-test
     runs-on: ubuntu-latest
+    env:
+      API_LEVEL: 30
+      TARGET: default
+      ARCH: x86_64
     steps:
+      - name: Free disk space
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: false
+          android: false
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: true
+
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
+
+      - name: Run Mockoon CLI
+        uses: mockoon/cli-action@v3
+        with:
+          data-file: 'https://raw.githubusercontent.com/conekta/openapi/main/mocks/conekta_api.json'
+          port: 3000
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -20,40 +41,87 @@ jobs:
           flutter-version: '3.x'
           channel: 'stable'
           cache: true
+
+      - name: Cache Gradle and pub
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.pub-cache
+            android/.gradle
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties', 'pubspec.lock') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
+
       - name: Get Flutter dependencies
         run: flutter pub get
-
-      - name: Accept Android licenses
-        run: yes | flutter doctor --android-licenses
 
       - name: Enable KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
-      - name: Set up Android SDK
+
+      - name: AVD cache
+        uses: actions/cache@v5
+        id: avd-cache
+        with:
+          path: |
+            ~/.android/avd/*
+            ~/.android/adb*
+          key: avd-v2-${{ env.API_LEVEL }}-${{ env.TARGET }}-${{ env.ARCH }}
+
+      - name: Create AVD snapshot
+        if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 31
+          api-level: ${{ env.API_LEVEL }}
+          target: ${{ env.TARGET }}
+          arch: ${{ env.ARCH }}
+          cores: 4
+          ram-size: 4096M
+          heap-size: 1024M
+          disable-animations: false
+          force-avd-creation: false
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: echo "Generated AVD snapshot for caching."
+
+      - name: Run integration tests on Android emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ env.API_LEVEL }}
+          target: ${{ env.TARGET }}
+          arch: ${{ env.ARCH }}
+          cores: 4
+          ram-size: 4096M
           heap-size: 1024M
           disable-animations: true
-          cores: 8
-          ram-size: 12288M
-          target: google_apis
-          arch: x86_64
+          force-avd-creation: false
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           script: flutter test integration_test/
 
   test:
-    name: Run Flutter Tests
-    runs-on: ubuntu-latest
+    name: Run Flutter Tests (Flutter ${{ matrix.flutter-version }})
+    runs-on: aws-runner-set
+    strategy:
+      fail-fast: false
+      matrix:
+        flutter-version: ['3.19.x', '3.24.x', '3.29.x', '3.32.x', '3.x']
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
+
+      - name: Install xz-utils
+        run: |
+          if ! command -v xz >/dev/null 2>&1; then
+            sudo apt-get update && sudo apt-get install -y xz-utils
+          fi
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.x'
+          flutter-version: ${{ matrix.flutter-version }}
           channel: 'stable'
           cache: true
 

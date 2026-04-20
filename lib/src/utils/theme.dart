@@ -17,7 +17,7 @@ final ThemeData cardInputTheme = ThemeData(
       fontSize: 14,
       fontWeight: FontWeight.w400,
     ),
-    titleSmall: TextStyle(
+    titleSmall: const TextStyle(
       color: AppColors.label,
       fontSize: 14,
       fontWeight: FontWeight.w400,
@@ -28,15 +28,15 @@ final ThemeData cardInputTheme = ThemeData(
     contentPadding:
         const EdgeInsets.only(left: 14, right: 14, top: 0, bottom: 0),
     enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: AppColors.disabled),
+      borderSide: const BorderSide(color: AppColors.disabled),
       borderRadius: BorderRadius.circular(6),
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: AppColors.disabled),
+      borderSide: const BorderSide(color: AppColors.disabled),
       borderRadius: BorderRadius.circular(6),
     ),
     border: OutlineInputBorder(
-      borderSide: BorderSide(color: AppColors.disabled),
+      borderSide: const BorderSide(color: AppColors.disabled),
       borderRadius: BorderRadius.circular(6),
     ),
   ),

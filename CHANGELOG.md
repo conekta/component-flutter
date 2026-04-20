@@ -1,4 +1,13 @@
 # Changelog
+
+## [1.0.1] - 2026-04-17
+### Added
+- `CardFormConfig` class to group optional UI flags passed to `CardForm` via the `config` parameter.
+- `CardFormConfig.hideLogo` (default `false`) to show/hide the "Paga segura con Conekta" section.
+- `CardFormConfig.submitButtonText` (default `null`) to override the submit button label; falls back to the localized value when `null`.
+- Widget tests for `CardForm` config flags and `CardFormConfig` defaults.
+- Example usages in `example/lib/main.dart`.
+
 ## [1.0.0] - 2025-09-30
 - Final release
 

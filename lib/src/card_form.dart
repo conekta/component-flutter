@@ -7,6 +7,7 @@ import 'fields/card_cvv_field.dart';
 import 'fields/card_expiry_fields.dart';
 import 'fields/card_name_field.dart';
 import 'fields/card_number_field.dart';
+import 'models/card_form_config.dart';
 import 'models/card_model.dart';
 import 'services/payment_service.dart';
 import 'utils/dark_theme.dart';
@@ -19,12 +20,14 @@ class CardForm extends StatefulWidget {
   final PaymentService paymentService;
   final Locale locale;
   final ThemeData? themeData;
+  final CardFormConfig config;
   const CardForm(
       {super.key,
       this.onSubmitted,
       required this.paymentService,
       this.locale = const Locale('es'),
-      this.themeData});
+      this.themeData,
+      this.config = const CardFormConfig()});
 
   @override
   State<CardForm> createState() => _CardFormState();
@@ -37,6 +40,7 @@ class _CardFormState extends State<CardForm> {
   final cardNumberController = TextEditingController();
   final nameController = TextEditingController();
   final cvvController = TextEditingController();
+  final nameFocusNode = FocusNode();
   bool _isLoading = false;
   @override
   void dispose() {
@@ -44,6 +48,7 @@ class _CardFormState extends State<CardForm> {
     nameController.dispose();
     expiryDateController.dispose();
     cvvController.dispose();
+    nameFocusNode.dispose();
     super.dispose();
   }
 
@@ -68,6 +73,7 @@ class _CardFormState extends State<CardForm> {
         final result = await widget.paymentService
             .sendPayment(card, widget.locale.languageCode);
         cleanFields();
+        nameFocusNode.requestFocus();
         widget.onSubmitted?.call(Success(result));
       } on Exception catch (e) {
         widget.onSubmitted?.call(Failure(e));
@@ -79,7 +85,7 @@ class _CardFormState extends State<CardForm> {
     }
   }
 
-  cleanFields() {
+  void cleanFields() {
     cardNumberController.clear();
     nameController.clear();
     expiryDateController.clear();
@@ -115,7 +121,8 @@ class _CardFormState extends State<CardForm> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SecurePaymentSection(),
+                        if (!widget.config.hideLogo)
+                          const SecurePaymentSection(),
                         Text(
                             AppLocalizations.of(localizedContext)!
                                 .cardNameLabel,
@@ -124,6 +131,7 @@ class _CardFormState extends State<CardForm> {
                         const SizedBox(height: 8),
                         CardNameField(
                           controller: nameController,
+                          focusNode: nameFocusNode,
                           decoration: InputDecoration(
                               hintText: AppLocalizations.of(localizedContext)!
                                   .cardNameHint),
@@ -258,8 +266,9 @@ class _CardFormState extends State<CardForm> {
                                             .colorScheme
                                             .onPrimary))
                                 : Text(
-                                    AppLocalizations.of(localizedContext)!
-                                        .submitButton,
+                                    widget.config.submitButtonText ??
+                                        AppLocalizations.of(localizedContext)!
+                                            .submitButton,
                                     style: TextStyle(
                                         fontSize: 16,
                                         color: Theme.of(themedContext)

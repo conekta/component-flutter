@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 class CardNameField extends StatelessWidget {
   final TextEditingController controller;
   final InputDecoration? decoration;
+  final FocusNode? focusNode;
 
-  const CardNameField({required this.controller, this.decoration, super.key});
+  const CardNameField(
+      {required this.controller, this.decoration, this.focusNode, super.key});
   String? _validateCardName(BuildContext context, String? value) {
     final name = value?.replaceAll(' ', '');
     if (name == null || name.isEmpty) {
@@ -20,6 +22,7 @@ class CardNameField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       decoration: decoration,
+      focusNode: focusNode,
       validator: (value) => _validateCardName(context, value),
     );
   }

@@ -25,7 +25,7 @@ class CardCVVField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       decoration: decoration ??
-          InputDecoration(
+          const InputDecoration(
             labelText: 'CVV',
             isDense: true,
           ).applyDefaults(Theme.of(context).inputDecorationTheme),

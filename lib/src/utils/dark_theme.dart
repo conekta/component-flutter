@@ -16,7 +16,7 @@ final ThemeData darkTheme = ThemeData(
       fontSize: 14,
       fontWeight: FontWeight.w400,
     ),
-    titleSmall: TextStyle(
+    titleSmall: const TextStyle(
       color: DarkAppColors.label,
       fontSize: 14,
       fontWeight: FontWeight.w400,
@@ -27,15 +27,15 @@ final ThemeData darkTheme = ThemeData(
     contentPadding:
         const EdgeInsets.only(left: 14, right: 14, top: 0, bottom: 0),
     enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: DarkAppColors.disabled),
+      borderSide: const BorderSide(color: DarkAppColors.disabled),
       borderRadius: BorderRadius.circular(6),
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: DarkAppColors.disabled),
+      borderSide: const BorderSide(color: DarkAppColors.disabled),
       borderRadius: BorderRadius.circular(6),
     ),
     border: OutlineInputBorder(
-      borderSide: BorderSide(color: DarkAppColors.disabled),
+      borderSide: const BorderSide(color: DarkAppColors.disabled),
       borderRadius: BorderRadius.circular(6),
     ),
   ),
