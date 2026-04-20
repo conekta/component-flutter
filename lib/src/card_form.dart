@@ -82,7 +82,7 @@ class _CardFormState extends State<CardForm> {
     }
   }
 
-  cleanFields() {
+  void cleanFields() {
     cardNumberController.clear();
     nameController.clear();
     expiryDateController.clear();
