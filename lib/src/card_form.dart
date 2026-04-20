@@ -73,7 +73,6 @@ class _CardFormState extends State<CardForm> {
         final result = await widget.paymentService
             .sendPayment(card, widget.locale.languageCode);
         cleanFields();
-        _formKey.currentState?.reset();
         nameFocusNode.requestFocus();
         widget.onSubmitted?.call(Success(result));
       } on Exception catch (e) {
