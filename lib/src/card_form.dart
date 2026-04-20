@@ -40,6 +40,7 @@ class _CardFormState extends State<CardForm> {
   final cardNumberController = TextEditingController();
   final nameController = TextEditingController();
   final cvvController = TextEditingController();
+  final nameFocusNode = FocusNode();
   bool _isLoading = false;
   @override
   void dispose() {
@@ -47,6 +48,7 @@ class _CardFormState extends State<CardForm> {
     nameController.dispose();
     expiryDateController.dispose();
     cvvController.dispose();
+    nameFocusNode.dispose();
     super.dispose();
   }
 
@@ -71,6 +73,8 @@ class _CardFormState extends State<CardForm> {
         final result = await widget.paymentService
             .sendPayment(card, widget.locale.languageCode);
         cleanFields();
+        _formKey.currentState?.reset();
+        nameFocusNode.requestFocus();
         widget.onSubmitted?.call(Success(result));
       } on Exception catch (e) {
         widget.onSubmitted?.call(Failure(e));
@@ -128,6 +132,7 @@ class _CardFormState extends State<CardForm> {
                         const SizedBox(height: 8),
                         CardNameField(
                           controller: nameController,
+                          focusNode: nameFocusNode,
                           decoration: InputDecoration(
                               hintText: AppLocalizations.of(localizedContext)!
                                   .cardNameHint),
